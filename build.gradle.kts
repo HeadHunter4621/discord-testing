@@ -8,7 +8,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://m2.dv8tion.net/releases")
+
 }
 
 dependencies {

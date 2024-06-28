@@ -3,7 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-token.txt
+discord-token.txt
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
