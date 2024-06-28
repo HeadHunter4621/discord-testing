@@ -14,6 +14,7 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("net.dv8tion:JDA:5.0.0-alpha.14")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 tasks.test {
