@@ -18,15 +18,11 @@ fun main() {
         .addEventListeners(MessageListener())
         .build()
 
-    jda.guilds.forEach { guild ->
-        guild.updateCommands().addCommands(
-            Commands.slash("echo", "Repeats messages back to you.")
-                .addOption(OptionType.STRING, "message", "The message to repeat.")
-                .addOption(OptionType.INTEGER, "times", "The number of times to repeat the message.")
-                .addOption(OptionType.BOOLEAN, "ephemeral", "Whether or not the message should be sent as an ephemeral message.") ,
-            Commands.slash("ping", "Says Pong!")
-        ).queue()
-    }
+    jda.updateCommands().addCommands(
+        Commands.slash("ping", "Says Pong!"),
+        Commands.slash("echo", "Repeats messages back to you.")
+            .addOption(OptionType.STRING, "message", "The message to repeat.")
+    ).queue()
 
     jda.awaitReady()
     println("Bot is ready!")
@@ -43,18 +39,6 @@ class MessageListener : ListenerAdapter() {
         if (message == "?ping") {
             println("Recieved ping command")
             event.channel.sendMessage("Pong!").queue()
-
-        /*guild.updateCommands().addCommands(
-            Commands.slash("echo", "Repeats messages back to you.")
-                .addOption(OptionType.STRING, "message", "The message to repeat.")
-                .addOption(OptionType.INTEGER, "times", "The number of times to repeat the message.")
-                .addOption(OptionType.BOOLEAN, "ephemeral", "Whether or not the message should be sent as an ephemeral message.")
-
-        ).queue()
-
-        guild.updateCommands().addCommands(
-            Commands.slash("ping", "Says Pong!")
-        ).queue()*/
         }
     }
 
@@ -67,7 +51,6 @@ class MessageListener : ListenerAdapter() {
             println("Ping command received")
             event.reply("Pong!").queue()
             println("Ping command finished")
-
         }
     }
 }
