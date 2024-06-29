@@ -1,10 +1,12 @@
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
+import net.dv8tion.jda.api.interactions.components.buttons.Button
 import net.dv8tion.jda.api.requests.GatewayIntent
 import java.io.File
 
@@ -23,7 +25,8 @@ fun main() {
             .addOption(OptionType.STRING, "message", "The message to repeat."),
         Commands.slash("add", "Adds 2 numbers together")
             .addOption(OptionType.NUMBER, "number-1", "The first number")
-            .addOption(OptionType.NUMBER, "number-2", "The second number")
+            .addOption(OptionType.NUMBER, "number-2", "The second number"),
+        Commands.slash("repeat", "Repeats the name of the pressed button")
     ).queue()
     println("Bot is ready!")
 }
@@ -55,6 +58,20 @@ class MessageListener : ListenerAdapter() {
             println("Ping command received")
             event.reply("Pong!").queue()
             println("Ping command finished")
+        }else if(event.name == "repeat"){
+            println("Repeat command received")
+            event.reply("Click a button!")
+                .addActionRow(
+                    Button.primary("One", "One"),
+                    Button.primary("Two", "Two")).queue()
+            println("Repeat command finished")
+        }
+    }
+
+    override fun onButtonInteraction(event: ButtonInteractionEvent) {
+        when(event.componentId){
+            "One" -> event.reply("One").queue()
+            "Two" -> event.reply("Two").queue()
         }
     }
 }
