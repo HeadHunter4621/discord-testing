@@ -25,13 +25,11 @@ fun main() {
             .addOption(OptionType.NUMBER, "number-1", "The first number")
             .addOption(OptionType.NUMBER, "number-2", "The second number")
     ).queue()
-
     println("Bot is ready!")
 }
 
 class MessageListener : ListenerAdapter() {
     override fun onMessageReceived(event: MessageReceivedEvent) {
-        val guild = event.guild
         println("Recieved a message: ${event.message.contentRaw}")
         if (event.author.isBot) return
 
