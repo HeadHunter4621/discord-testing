@@ -52,14 +52,6 @@ class MessageListener : ListenerAdapter() {
             println("Ping command received")
             event.reply("Pong!").queue()
             println("Ping command finished")
-        }else if(event.name == "add"){
-            println("Add command received")
-            var num1:Long = 0
-            var num2:Long = 0
-            num1 = event.getOption("number-1")!!.asLong
-            num2 = event.getOption("number-2")!!.asLong
-            event.reply("The sum is ${num1 + num2}").queue()
-            println("Add command finished")
         }
     }
 }
