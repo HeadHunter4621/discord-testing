@@ -16,6 +16,7 @@ discord-token.txt
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+conra.xml
 
 ### Eclipse ###
 .apt_generated
