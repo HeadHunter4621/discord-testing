@@ -13,7 +13,7 @@ fun main() {
 
     val jda = JDABuilder.createDefault(token)
         .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-        .setActivity(Activity.playing("Ping Pong"))
+        .setActivity(Activity.listening("all of the sounds"))
         .addEventListeners(MessageListener())
         .build()
 
@@ -30,14 +30,19 @@ fun main() {
 
 class MessageListener : ListenerAdapter() {
     override fun onMessageReceived(event: MessageReceivedEvent) {
-        println("Recieved a message: ${event.message.contentRaw}")
-        if (event.author.isBot) return
+        println("Received a message: ${event.message.contentRaw}")
+
 
         val message = event.message.contentRaw
 
-        if (message == "?ping") {
-            println("Recieved ping command")
-            event.channel.sendMessage("Pong!").queue()
+        if (event.author.isBot) {
+            println("Received bot message (ignored)")
+        }else if (message == "!ping") {
+                println("Received ping command")
+                event.channel.sendMessage("Pong!").queue()
+        }else if (message == "Hi") {
+            println("Received greeting")
+            event.channel.sendMessage("Haiiiiii !!!1!1!!1!!!111!111111111! :3:3:333333:3 <3<3<3 :3").queue()
         }
     }
 
