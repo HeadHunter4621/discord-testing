@@ -33,7 +33,7 @@ fun main() {
 
 class MessageListener : ListenerAdapter() {
     override fun onMessageReceived(event: MessageReceivedEvent) {
-        println("Received a message: ${event.message.contentRaw}")
+        println("Received a message from ${event.message.author}")
 
 
         val message = event.message.contentRaw
@@ -50,21 +50,14 @@ class MessageListener : ListenerAdapter() {
     }
 
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
-        if(event.name == "echo"){
-            println("Echo command received")
-            event.reply(event.getOption("message")!!.asString).queue()
-            println("Echo command finished")
-        }else if(event.name == "ping"){
-            println("Ping command received")
-            event.reply("Pong!").queue()
-            println("Ping command finished")
-        }else if(event.name == "repeat"){
-            println("Repeat command received")
-            event.reply("Click a button!")
+        when(event.name) {
+            "echo" -> event.reply(event.getOption("message")!!.asString).queue()
+            "ping" -> event.reply("Pong!").queue()
+            "repeat" -> event.reply("Click a button!")
                 .addActionRow(
                     Button.primary("One", "One"),
-                    Button.primary("Two", "Two")).queue()
-            println("Repeat command finished")
+                    Button.primary("Two", "Two")
+                ).queue()
         }
     }
 
