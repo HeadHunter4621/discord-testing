@@ -1,5 +1,5 @@
 # Discord Bot
-## This is my first Doscord bot so it'll be a bit jank
+## This is my first Discord bot so it'll be a bit jank
 
 Uses Kotlin (Made in IntelliJ IDEA) using JDA
 
